@@ -138,6 +138,38 @@ struct TABLERECORD_API TableRecordWrapper {
 
     // Read *col.numrows cells into out (out is cleared first).
     void read_string_column(const OptColumn &col, std::vector<std::string> &out);
+
+    // ---- row access (cross-column) ----
+
+    // A single (row, col) cell value, tagged with the source column's DBF_* type.
+    // Exactly one of ival/fval/sval holds the value, selected by `type`:
+    //   DBF_STRING                         -> sval
+    //   DBF_FLOAT, DBF_DOUBLE              -> fval
+    //   DBF_CHAR/UCHAR/SHORT/USHORT/LONG/
+    //   DBF_ULONG/INT64/UINT64/ENUM        -> ival
+    struct CellValue {
+        epicsEnum16  type;
+        epicsInt64   ival;
+        epicsFloat64 fval;
+        std::string  sval;
+
+        CellValue() : type(0), ival(0), fval(0.0) {}
+    };
+
+    // Reads one cell from a raw column buffer (as stored in CxxVAL/COxxVAL).
+    // `row` must be less than the buffer's allocated row count; the caller
+    // is responsible for bounds-checking against *col.numrows beforehand.
+    static CellValue read_cell(const void *colbuf, size_t row, epicsEnum16 type);
+
+    // Reads row `row` across all active data columns (see data_cols()) into
+    // `out` (cleared first, one CellValue per active data column, in column
+    // order). Columns whose *numrows <= row contribute a default CellValue
+    // (type set, value zero/empty) so `out` always has num_data_cols() entries.
+    void read_data_row(size_t row, std::vector<CellValue> &out);
+
+    // Reads row `row` across all active optional columns (see opt_cols())
+    // into `out`, with the same padding rule as read_data_row().
+    void read_opt_row(size_t row, std::vector<CellValue> &out);
 };
 
 #endif // __cplusplus

@@ -1,0 +1,14 @@
+record(table, "TBL:CSV2:ROWS") {
+    field(DTYP, "Table Row")
+    field(DESC, "Selected rows of the table TBL:CSV2")
+    field(INP,  "@TBL:CSV2")
+    field(SCAN, "1 second")
+    field(MAXROWS, "32")
+
+    # Each column here picks one row of TBL:CSV2 and transposes it into a
+    # column. The number at the end of the column name is the row number in
+    # TBL:CSV2 which is selected. See devTableRow.cpp
+    field(C00NAME, "row0")  field(C00LABEL, "row 0")  field(C00TYPE, "DOUBLE")
+    field(C01NAME, "row3")  field(C01LABEL, "row 3")  field(C01TYPE, "DOUBLE")
+    field(C02NAME, "row5")  field(C02LABEL, "row 5")  field(C02TYPE, "DOUBLE")
+}

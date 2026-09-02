@@ -7,6 +7,8 @@
 #include <string.h>
 #include <errlog.h>
 
+#include <dbFldTypes.h>
+
 TableRecordWrapper::DataColumnConfig::DataColumnConfig(
     const std::string & name, const std::string & label, epicsEnum16 type
 ) : name(name), label(label), type(type)
@@ -234,4 +236,96 @@ void TableRecordWrapper::read_string_column(const OptColumn &col,
                                             std::vector<std::string> &out)
 {
     readStringColumnImpl(*col.val, *col.numrows, out);
+}
+
+/* ------------------------------------------------------------------ */
+/* row access (cross-column)                                           */
+/* ------------------------------------------------------------------ */
+
+TableRecordWrapper::CellValue TableRecordWrapper::read_cell(
+    const void *colbuf, size_t row, epicsEnum16 type)
+{
+    CellValue cell;
+    cell.type = type;
+
+    if (!colbuf)
+        return cell;
+
+    if (type == DBF_STRING) {
+        cell.sval = vstr_read_cell(colbuf, row);
+        return cell;
+    }
+
+    switch (type) {
+#define READ_INT(DBFTYPE, CTYPE) \
+    case DBFTYPE: \
+        cell.ival = (epicsInt64)(((const CTYPE *)colbuf)[row]); \
+        break;
+    READ_INT(DBF_CHAR,   epicsInt8)
+    READ_INT(DBF_UCHAR,  epicsUInt8)
+    READ_INT(DBF_SHORT,  epicsInt16)
+    READ_INT(DBF_USHORT, epicsUInt16)
+    READ_INT(DBF_LONG,   epicsInt32)
+    READ_INT(DBF_ULONG,  epicsUInt32)
+    READ_INT(DBF_INT64,  epicsInt64)
+    READ_INT(DBF_UINT64, epicsUInt64)
+    READ_INT(DBF_ENUM,   epicsEnum16)
+#undef READ_INT
+    case DBF_FLOAT:
+        cell.fval = ((const epicsFloat32 *)colbuf)[row];
+        break;
+    case DBF_DOUBLE:
+        cell.fval = ((const epicsFloat64 *)colbuf)[row];
+        break;
+    default:
+        break;
+    }
+
+    return cell;
+}
+
+static void readRowImpl(const std::vector<TableRecordWrapper::DataColumn> &cols,
+                        size_t row, std::vector<TableRecordWrapper::CellValue> &out)
+{
+    out.clear();
+    out.reserve(cols.size());
+    for (auto &col : cols) {
+        if (row < *col.numrows) {
+            out.push_back(TableRecordWrapper::read_cell(*col.val, row, col.config.type));
+        } else {
+            TableRecordWrapper::CellValue cell;
+            cell.type = col.config.type;
+            out.push_back(cell);
+        }
+    }
+}
+
+static void readRowImpl(const std::vector<TableRecordWrapper::OptColumn> &cols,
+                        size_t row, std::vector<TableRecordWrapper::CellValue> &out)
+{
+    out.clear();
+    out.reserve(cols.size());
+    for (auto &col : cols) {
+        if (row < *col.numrows) {
+            out.push_back(TableRecordWrapper::read_cell(*col.val, row, col.config.type));
+        } else {
+            TableRecordWrapper::CellValue cell;
+            cell.type = col.config.type;
+            out.push_back(cell);
+        }
+    }
+}
+
+void TableRecordWrapper::read_data_row(size_t row, std::vector<CellValue> &out)
+{
+    std::vector<DataColumn> cols;
+    data_cols(cols);
+    readRowImpl(cols, row, out);
+}
+
+void TableRecordWrapper::read_opt_row(size_t row, std::vector<CellValue> &out)
+{
+    std::vector<OptColumn> cols;
+    opt_cols(cols);
+    readRowImpl(cols, row, out);
 }

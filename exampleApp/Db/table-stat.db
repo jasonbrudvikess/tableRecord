@@ -2,7 +2,7 @@
 record(table, "TBL:SRC") {
     field(DTYP, "Random Sim")
     field(DESC, "Stat demo source table")
-    field(SCAN, "1 second")
+    field(SCAN, "10 second")
     field(MAXROWS, "32")
 
     field(C00NAME, "x") field(C00LABEL, "X") field(C00TYPE, "INT64")

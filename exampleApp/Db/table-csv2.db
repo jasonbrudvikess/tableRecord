@@ -1,0 +1,12 @@
+record(table, "TBL:CSV2") {
+    field(DTYP, "CSV Loader")
+    field(DESC, "Read CSV file into table")
+    field(INP,  "@testfile2.csv")
+    field(MAXROWS, "32")
+
+    field(C00NAME,  "cola")  field(C00LABEL, "ColA") field(C00TYPE, "DOUBLE")
+    field(C01NAME,  "colb")  field(C01LABEL, "ColB") field(C01TYPE, "DOUBLE")
+    field(C02NAME,  "colc")  field(C02LABEL, "ColC") field(C02TYPE, "DOUBLE")
+
+    field(PINI, "YES")
+}
