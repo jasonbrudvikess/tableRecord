@@ -4,13 +4,18 @@ record(table, "TBL:ROWS") {
     field(SCAN, "1 second")
     field(MAXROWS, "8")
 
-    # Each column names its source table via its own CxxINP link; row
-    # selection is by the trailing decimal digits of the column's name.
-    field(C00NAME, "tbl_csv2_row_0")  field(C00LABEL, "CSV2 row 0")  field(C00INP, "TBL:CSV2")
-    field(C01NAME, "tbl_csv2_row_5")  field(C01LABEL, "CSV2 row 5")  field(C01INP, "TBL:CSV2")
-    field(C02NAME, "tbl_csv2_row_7")  field(C02LABEL, "CSV2 row 7")  field(C02INP, "TBL:CSV2")
-    field(C03NAME, "tbl_src_row_3")   field(C03LABEL, "SRC  row 3")  field(C03INP, "TBL:SRC")
-    field(C04NAME, "tbl_src_row_7")   field(C04LABEL, "SRC  row 7")  field(C04INP, "TBL:SRC")
+    # Required fields for each column are:
+    #  - CxxNAME - sets the name of the column, trailing decimal digits are
+    #              used to select the row from the source table
+    #  - CxxINP  - sets source table for the column, must be a table record name
+    # Optional fields for each column are:
+    # - CxxLABEL - defaults to <source name>.row:<row number>
+    field(C00NAME, "tbl_csv2_row_0")  field(C00INP, "TBL:CSV2")
+    field(C01NAME, "tbl_csv2_row_5")  field(C01INP, "TBL:CSV2")
+    field(C02NAME, "tbl_csv2_row_7")  field(C02INP, "TBL:CSV2")
+    field(C03NAME, "tbl_src_row_3")   field(C03INP, "TBL:SRC")
+    field(C04NAME, "tbl_src_row_7")   field(C04INP, "TBL:SRC")
+    field(C05NAME, "tbl_sft_row_0")   field(C05INP, "TBL:SFT")   field(C05LABEL, "First SFT row")
 
     field(PINI, "YES")
 }

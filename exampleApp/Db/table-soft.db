@@ -13,6 +13,7 @@ record(waveform, "TBL:SFT:COL01") {
 record(waveform, "TBL:SFT:COL02") {
     field(FTVL, "STRING")
     field(NELM, "4")
+    field(INP,  {const: ["hello"] })
 }
 
 record(table, "TBL:SFT") {

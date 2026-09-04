@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <cstring>
 #include <stddef.h>
 #include <stdlib.h>
 #include <string>
@@ -55,6 +56,12 @@ static size_t parse_trailing_row_index(const std::string &name, size_t fallback)
         return fallback;
 
     return (size_t)strtoul(name.c_str() + begin, NULL, 10);
+}
+
+/* Build the default label for a column that has no CxxLABEL set, e.g.
+ * source "TBL:CSV2", row 0 -> "TBL:CSV2.row:0". */
+static std::string default_label(const std::string &srcname, size_t row) {
+    return srcname + ".row:" + std::to_string(row);
 }
 
 /* Resolve a source table record by name, given as e.g. "TBL:SRC" */
@@ -140,7 +147,16 @@ static long row_init_record(struct dbCommon *pcommon) {
         }
 
         pvt->srcRecs.push_back(colSrcRec);
-        pvt->srcRows.push_back(parse_trailing_row_index(col.config.name, i));
+        size_t srcRow = parse_trailing_row_index(col.config.name, i);
+        pvt->srcRows.push_back(srcRow);
+
+        /* No CxxLABEL supplied in the .db file: default to "<source>.row:<n>". */
+        if (col.config.label.empty() && !pvname.empty()) {
+            std::string label = default_label(pvname, srcRow);
+            strncpy(col.label, label.c_str(), sizeof(prec->c00label) - 1);
+            col.label[sizeof(prec->c00label) - 1] = '\0';
+            col.config.label = col.label;
+        }
     }
 
     delete pvnames;

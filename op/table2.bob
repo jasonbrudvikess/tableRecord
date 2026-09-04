@@ -5,9 +5,9 @@
   <height>895</height>
   <widget type="group" version="3.0.0">
     <name>Group</name>
-    <x>610</x>
+    <x>570</x>
     <y>60</y>
-    <width>900</width>
+    <width>940</width>
     <height>240</height>
     <style>2</style>
     <transparent>true</transparent>
@@ -20,7 +20,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_3</name>
-      <text>Table from TBL:SRC:ROWS</text>
+      <text>Table TBL:SRC:ROWS</text>
       <x>5</x>
       <y>5</y>
       <width>690</width>
@@ -34,7 +34,7 @@
     <name>Group</name>
     <x>16</x>
     <y>60</y>
-    <width>594</width>
+    <width>554</width>
     <height>440</height>
     <style>2</style>
     <transparent>true</transparent>
@@ -43,7 +43,7 @@
       <text>Simulated Table - TBL:SRC - number of rows: 32</text>
       <x>5</x>
       <y>5</y>
-      <width>690</width>
+      <width>568</width>
       <font>
         <font family="Liberation Sans" style="BOLD" size="18.0">
         </font>
@@ -56,42 +56,34 @@
       <y>25</y>
       <width>690</width>
     </widget>
-    <widget type="table" version="2.0.0">
-      <name>Table</name>
-      <pv_name>pva://TBL:SRC</pv_name>
-      <x>5</x>
-      <y>45</y>
-      <width>578</width>
-      <height>384</height>
-      <columns>
-        <column>
-          <name>Column 1</name>
-          <width>100</width>
-          <editable>true</editable>
-        </column>
-      </columns>
-      <editable>false</editable>
-    </widget>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_7</name>
-    <text>Grab rows from a table to make a new table</text>
-    <y>10</y>
-    <width>820</width>
-    <height>40</height>
-    <font>
-      <font family="Liberation Sans" style="BOLD" size="24.0">
+    <class>TITLE</class>
+    <text>Use rows from source tables as columns in new tables</text>
+    <x use_class="true">20</x>
+    <y use_class="true">0</y>
+    <width>850</width>
+    <height use_class="true">50</height>
+    <font use_class="true">
+      <font name="_ESS Title" family="Source Sans Pro" style="BOLD_ITALIC" size="36.0">
       </font>
     </font>
-    <horizontal_alignment>1</horizontal_alignment>
-    <vertical_alignment>1</vertical_alignment>
+    <foreground_color use_class="true">
+      <color name="Black" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+    <horizontal_alignment use_class="true">0</horizontal_alignment>
+    <vertical_alignment use_class="true">1</vertical_alignment>
+    <wrap_words use_class="true">false</wrap_words>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group_1</name>
     <x>16</x>
     <y>500</y>
-    <width>594</width>
-    <height>395</height>
+    <width>554</width>
+    <height>380</height>
     <style>2</style>
     <transparent>true</transparent>
     <widget type="label" version="2.0.0">
@@ -99,7 +91,7 @@
       <text>Table from CSV file - TBL:CSV2</text>
       <x>5</x>
       <y>5</y>
-      <width>690</width>
+      <width>448</width>
       <font>
         <font family="Liberation Sans" style="BOLD" size="18.0">
         </font>
@@ -112,22 +104,6 @@
       <y>25</y>
       <width>690</width>
     </widget>
-    <widget type="table" version="2.0.0">
-      <name>Table_2</name>
-      <pv_name>pva://TBL:CSV2</pv_name>
-      <x>5</x>
-      <y>45</y>
-      <width>578</width>
-      <height>334</height>
-      <columns>
-        <column>
-          <name>Column 1</name>
-          <width>100</width>
-          <editable>true</editable>
-        </column>
-      </columns>
-      <editable>false</editable>
-    </widget>
     <widget type="action_button" version="3.0.0">
       <name>Action Button</name>
       <actions>
@@ -139,16 +115,16 @@
       </actions>
       <pv_name>pva://TBL:CSV2.PROC</pv_name>
       <text>Read CSV</text>
-      <x>463</x>
+      <x>443</x>
       <y>5</y>
       <tooltip>$(actions)</tooltip>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group_2</name>
-    <x>610</x>
+    <x>570</x>
     <y>300</y>
-    <width>900</width>
+    <width>940</width>
     <height>240</height>
     <style>2</style>
     <transparent>true</transparent>
@@ -161,7 +137,7 @@
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_9</name>
-      <text>Table from TBL:CSV2:ROWS</text>
+      <text>Table TBL:CSV2:ROWS</text>
       <x>5</x>
       <y>5</y>
       <width>690</width>
@@ -173,22 +149,22 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group_3</name>
-    <x>610</x>
+    <x>570</x>
     <y>540</y>
-    <width>900</width>
+    <width>940</width>
     <height>240</height>
     <style>2</style>
     <transparent>true</transparent>
     <widget type="label" version="2.0.0">
       <name>Label_10</name>
-      <text>Column values are read from rows in TBL:CSV2 and TBL:SRC</text>
+      <text>Column values are rows from various tables</text>
       <x>5</x>
       <y>25</y>
       <width>690</width>
     </widget>
     <widget type="label" version="2.0.0">
       <name>Label_11</name>
-      <text>Table from TBL:ROWS</text>
+      <text>Table TBL:ROWS</text>
       <x>5</x>
       <y>5</y>
       <width>690</width>
@@ -201,14 +177,14 @@
   <widget type="table" version="2.0.0">
     <name>Table_4</name>
     <pv_name>pva://TBL:ROWS</pv_name>
-    <x>616</x>
+    <x>576</x>
     <y>586</y>
-    <width>884</width>
+    <width>924</width>
     <height>174</height>
     <columns>
       <column>
         <name>Column 1</name>
-        <width>50</width>
+        <width>150</width>
         <editable>true</editable>
       </column>
     </columns>
@@ -217,9 +193,9 @@
   <widget type="table" version="2.0.0">
     <name>Table_3</name>
     <pv_name>pva://TBL:CSV2:ROWS</pv_name>
-    <x>616</x>
+    <x>576</x>
     <y>346</y>
-    <width>884</width>
+    <width>924</width>
     <height>174</height>
     <columns>
       <column>
@@ -233,14 +209,46 @@
   <widget type="table" version="2.0.0">
     <name>Table_1</name>
     <pv_name>pva://TBL:SRC:ROWS</pv_name>
-    <x>616</x>
+    <x>576</x>
     <y>106</y>
-    <width>884</width>
+    <width>924</width>
     <height>174</height>
     <columns>
       <column>
         <name>Column 1</name>
         <width>150</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+    <editable>false</editable>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table</name>
+    <pv_name>pva://TBL:SRC</pv_name>
+    <x>22</x>
+    <y>106</y>
+    <width>538</width>
+    <height>384</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>100</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+    <editable>false</editable>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table_2</name>
+    <pv_name>pva://TBL:CSV2</pv_name>
+    <x>22</x>
+    <y>546</y>
+    <width>538</width>
+    <height>324</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>100</width>
         <editable>true</editable>
       </column>
     </columns>
