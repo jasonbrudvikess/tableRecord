@@ -1,14 +1,16 @@
 record(table, "TBL:CSV2:ROWS") {
     field(DTYP, "Table Row")
     field(DESC, "Selected rows of the table TBL:CSV2")
-    field(INP,  "@TBL:CSV2")
     field(SCAN, "1 second")
-    field(MAXROWS, "32")
+    field(MAXROWS, "8")
 
-    # Each column here picks one row of TBL:CSV2 and transposes it into a
-    # column. The number at the end of the column name is the row number in
-    # TBL:CSV2 which is selected. See devTableRow.cpp
-    field(C00NAME, "row0")  field(C00LABEL, "row 0")  field(C00TYPE, "DOUBLE")
-    field(C01NAME, "row3")  field(C01LABEL, "row 3")  field(C01TYPE, "DOUBLE")
-    field(C02NAME, "row5")  field(C02LABEL, "row 5")  field(C02TYPE, "DOUBLE")
+    # Each column names its source table via its own CxxINP link; row
+    # selection is by the trailing decimal digits of the column's name.
+    field(C00NAME, "row_0")  field(C00LABEL, "row 0")  field(C00INP, "TBL:CSV2")
+    field(C01NAME, "row_1")  field(C01LABEL, "row 1")  field(C01INP, "TBL:CSV2")
+    field(C02NAME, "row_2")  field(C02LABEL, "row 2")  field(C02INP, "TBL:CSV2")
+    field(C03NAME, "row_5")  field(C03LABEL, "row 5")  field(C03INP, "TBL:CSV2")
+    field(C04NAME, "row_7")  field(C04LABEL, "row 7")  field(C04INP, "TBL:CSV2")
+
+    field(PINI, "YES")
 }

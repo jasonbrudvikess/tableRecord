@@ -5,28 +5,12 @@
   <height>895</height>
   <widget type="group" version="3.0.0">
     <name>Group</name>
-    <x>16</x>
-    <y>590</y>
-    <width>800</width>
-    <height>260</height>
+    <x>610</x>
+    <y>60</y>
+    <width>900</width>
+    <height>240</height>
     <style>2</style>
     <transparent>true</transparent>
-    <widget type="table" version="2.0.0">
-      <name>Table_1</name>
-      <pv_name>pva://TBL:SRC:ROWS</pv_name>
-      <x>5</x>
-      <y>45</y>
-      <width>790</width>
-      <height>204</height>
-      <columns>
-        <column>
-          <name>Column 1</name>
-          <width>150</width>
-          <editable>true</editable>
-        </column>
-      </columns>
-      <editable>false</editable>
-    </widget>
     <widget type="label" version="2.0.0">
       <name>Label_4</name>
       <text>Column values are read from rows in TBL:SRC</text>
@@ -50,8 +34,8 @@
     <name>Group</name>
     <x>16</x>
     <y>60</y>
-    <width>800</width>
-    <height>530</height>
+    <width>594</width>
+    <height>440</height>
     <style>2</style>
     <transparent>true</transparent>
     <widget type="label" version="2.0.0">
@@ -77,8 +61,8 @@
       <pv_name>pva://TBL:SRC</pv_name>
       <x>5</x>
       <y>45</y>
-      <width>790</width>
-      <height>474</height>
+      <width>578</width>
+      <height>384</height>
       <columns>
         <column>
           <name>Column 1</name>
@@ -104,10 +88,10 @@
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group_1</name>
-    <x>816</x>
-    <y>60</y>
-    <width>800</width>
-    <height>530</height>
+    <x>16</x>
+    <y>500</y>
+    <width>594</width>
+    <height>395</height>
     <style>2</style>
     <transparent>true</transparent>
     <widget type="label" version="2.0.0">
@@ -133,8 +117,8 @@
       <pv_name>pva://TBL:CSV2</pv_name>
       <x>5</x>
       <y>45</y>
-      <width>790</width>
-      <height>474</height>
+      <width>578</width>
+      <height>334</height>
       <columns>
         <column>
           <name>Column 1</name>
@@ -155,35 +139,19 @@
       </actions>
       <pv_name>pva://TBL:CSV2.PROC</pv_name>
       <text>Read CSV</text>
-      <x>673</x>
+      <x>463</x>
       <y>5</y>
       <tooltip>$(actions)</tooltip>
     </widget>
   </widget>
   <widget type="group" version="3.0.0">
     <name>Group_2</name>
-    <x>816</x>
-    <y>590</y>
-    <width>800</width>
-    <height>260</height>
+    <x>610</x>
+    <y>300</y>
+    <width>900</width>
+    <height>240</height>
     <style>2</style>
     <transparent>true</transparent>
-    <widget type="table" version="2.0.0">
-      <name>Table_3</name>
-      <pv_name>pva://TBL:CSV2:ROWS</pv_name>
-      <x>5</x>
-      <y>45</y>
-      <width>790</width>
-      <height>204</height>
-      <columns>
-        <column>
-          <name>Column 1</name>
-          <width>50</width>
-          <editable>true</editable>
-        </column>
-      </columns>
-      <editable>false</editable>
-    </widget>
     <widget type="label" version="2.0.0">
       <name>Label_8</name>
       <text>Column values are read from rows in TBL:CSV2</text>
@@ -202,5 +170,80 @@
         </font>
       </font>
     </widget>
+  </widget>
+  <widget type="group" version="3.0.0">
+    <name>Group_3</name>
+    <x>610</x>
+    <y>540</y>
+    <width>900</width>
+    <height>240</height>
+    <style>2</style>
+    <transparent>true</transparent>
+    <widget type="label" version="2.0.0">
+      <name>Label_10</name>
+      <text>Column values are read from rows in TBL:CSV2 and TBL:SRC</text>
+      <x>5</x>
+      <y>25</y>
+      <width>690</width>
+    </widget>
+    <widget type="label" version="2.0.0">
+      <name>Label_11</name>
+      <text>Table from TBL:ROWS</text>
+      <x>5</x>
+      <y>5</y>
+      <width>690</width>
+      <font>
+        <font family="Liberation Sans" style="BOLD" size="18.0">
+        </font>
+      </font>
+    </widget>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table_4</name>
+    <pv_name>pva://TBL:ROWS</pv_name>
+    <x>616</x>
+    <y>586</y>
+    <width>884</width>
+    <height>174</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>50</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+    <editable>false</editable>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table_3</name>
+    <pv_name>pva://TBL:CSV2:ROWS</pv_name>
+    <x>616</x>
+    <y>346</y>
+    <width>884</width>
+    <height>174</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>50</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+    <editable>false</editable>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table_1</name>
+    <pv_name>pva://TBL:SRC:ROWS</pv_name>
+    <x>616</x>
+    <y>106</y>
+    <width>884</width>
+    <height>174</height>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>150</width>
+        <editable>true</editable>
+      </column>
+    </columns>
+    <editable>false</editable>
   </widget>
 </display>

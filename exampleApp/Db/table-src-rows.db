@@ -1,29 +1,25 @@
 record(table, "TBL:SRC:ROWS") {
     field(DTYP, "Table Row")
     field(DESC, "Selected rows of TBL:SRC")
-    field(INP,  "@TBL:SRC")
     field(SCAN, "1 second")
     field(MAXROWS, "32")
 
-    # Each column here picks one row of TBL:SRC (see table-stat.db) and
-    # transposes it into a column: TBL:SRC has 3 columns (x, y, z), so row i
-    # becomes a 3-element column holding [x[i], y[i], z[i]].
-    # See devTableRow.cpp
-    
     # Column names without trailing numbers have as their source the same row
     # in the source table as the column's position in this table.
     # Here the first two rows of TBL:SRC are selected.
-    field(C00NAME, "row_zero") field(C00LABEL, "row zero") field(C00TYPE, "DOUBLE")
-    field(C01NAME, "row_one")  field(C01LABEL, "row one")  field(C01TYPE, "DOUBLE")
+    field(C00NAME, "row_zero") field(C00LABEL, "row zero") field(C00INP, "TBL:SRC")
+    field(C01NAME, "row_one")  field(C01LABEL, "row one")  field(C01INP, "TBL:SRC")
 
     # Column names with trailing numbers have as their source the row with that
     # number in the source table.
     # Here select TBL:SRC rows 3, 7, 10 
-    field(C02NAME, "row3")  field(C02LABEL, "row 3")  field(C02TYPE, "DOUBLE")
-    field(C03NAME, "row7")  field(C03LABEL, "row 7")  field(C03TYPE, "DOUBLE")
-    field(C04NAME, "row10") field(C04LABEL, "row 10") field(C04TYPE, "DOUBLE")
+    field(C02NAME, "row_3")  field(C02LABEL, "row 3")  field(C02INP, "TBL:SRC")
+    field(C03NAME, "row_7")  field(C03LABEL, "row 7")  field(C03INP, "TBL:SRC")
+    field(C04NAME, "row_10") field(C04LABEL, "row 10") field(C04INP, "TBL:SRC")
 
     # For a column number which does not exist in the source table, the column
     # is filled with zeroes.
-    field(C05NAME, "row99") field(C05LABEL, "row 99") field(C05TYPE, "DOUBLE")
+    field(C05NAME, "row_99") field(C05LABEL, "row 99") field(C05INP, "TBL:SRC")
+
+    field(PINI, "YES")
 }

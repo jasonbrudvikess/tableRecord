@@ -9,6 +9,7 @@ DB += table-csv.db
 DB += table-csv2.db
 DB += table-csv2-rows.db
 DB += table-src-rows.db
+DB += table-rows.db
 DB += table-sim.db
 DB += table-soft.db
 DB += table-stat.db
