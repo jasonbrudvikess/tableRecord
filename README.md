@@ -1,3 +1,48 @@
+# This branch: testing-of-table-rows
+This branch adds an example device support for reading rows
+of a tableRecord. 
+
+### 'Table Row' sample device support
+
+The `Table Row` device support is provided as a simple example of how to
+populate a table record from the rows of other table records. This device
+reads tableRecords specified in the `CxxINP` fields and reads
+the rows of the input table records.
+
+The example (`table-rows.db`) reads selected rows from several sources:
+```
+record(table, "TBL:ROWS") {
+    field(DTYP, "Table Row")
+    field(DESC, "Selected rows from multiple tables")
+    field(SCAN, "1 second")
+    field(MAXROWS, "8")
+
+    # Required fields for each column are:
+    #  - CxxNAME - sets the name of the column, trailing decimal digits are
+    #              used to select the row from the source table
+    #  - CxxINP  - sets source table for the column, must be a table record name
+    # Optional fields for each column are:
+    # - CxxLABEL - defaults to <source name>.row:<row number>
+    field(C00NAME, "tbl_csv2_row_0")  field(C00INP, "TBL:CSV2")
+    field(C01NAME, "tbl_csv2_row_5")  field(C01INP, "TBL:CSV2")
+    field(C02NAME, "tbl_csv2_row_7")  field(C02INP, "TBL:CSV2")
+    field(C03NAME, "tbl_src_row_3")   field(C03INP, "TBL:SRC")
+    field(C04NAME, "tbl_src_row_7")   field(C04INP, "TBL:SRC")
+    field(C05NAME, "tbl_sft_row_0")   field(C05INP, "TBL:SFT")   field(C05LABEL, "First SFT row")
+
+    field(PINI, "YES")
+}
+```
+
+Example screenshot from phoebus, the *TBL:ROWS* from the above example is shown
+in the lower right:
+![phoebus-screenshot-tablerecord-rows.png](phoebus-screenshot-tablerecord-rows.png)
+
+The device support code:
+```bash
+exampleApp/src/devTableRow.cpp
+```
+
 # Table Record
 
 The table record is used to expose tabular data via PV Access, while integrating
